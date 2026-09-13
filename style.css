@@ -1,0 +1,295 @@
+/* ==============================
+   GLOBAL
+   ============================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    color: #3b2730;
+
+    background: #fff7fa;
+
+    overflow-x: hidden;
+}
+
+
+/* ==============================
+   OPENING SCREEN
+   ============================== */
+
+.opening {
+    min-height: 100vh;
+    min-height: 100svh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            #ffffff 0%,
+            #fff5f8 55%,
+            #fde8f0 100%
+        );
+}
+
+
+.opening-content {
+    width: 100%;
+    max-width: 700px;
+
+    text-align: center;
+}
+
+
+/* ==============================
+   SMALL TOP TEXT
+   ============================== */
+
+.eyebrow {
+    margin: 0 0 35px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
+
+    letter-spacing: 5px;
+
+    text-transform: uppercase;
+
+    color: #b56582;
+}
+
+
+/* ==============================
+   ENVELOPE
+   ============================== */
+
+.envelope-container {
+
+    width: 260px;
+    height: 180px;
+
+    margin: 0 auto 45px;
+
+    cursor: pointer;
+
+    perspective: 1000px;
+}
+
+
+.envelope {
+
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    transform-style: preserve-3d;
+}
+
+
+/* Envelope body */
+
+.envelope-back {
+
+    position: absolute;
+
+    inset: 0;
+
+    background: #f4c7d6;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 25px 60px rgba(160, 70, 100, 0.18);
+}
+
+
+/* Letter sitting inside */
+
+.letter-preview {
+
+    position: absolute;
+
+    left: 18px;
+    right: 18px;
+
+    bottom: 12px;
+
+    height: 135px;
+
+    background: #fff;
+
+    border-radius: 5px;
+
+    z-index: 2;
+
+    box-shadow:
+        0 5px 15px rgba(100, 50, 70, 0.08);
+
+    transition:
+        transform 0.8s ease;
+}
+
+
+/* Front of envelope */
+
+.envelope-front {
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 70%;
+
+    background: #efb6ca;
+
+    clip-path: polygon(
+        0 0,
+        50% 55%,
+        100% 0,
+        100% 100%,
+        0 100%
+    );
+
+    z-index: 4;
+}
+
+
+/* Envelope flap */
+
+.envelope-flap {
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 0;
+    height: 0;
+
+    border-left: 130px solid transparent;
+    border-right: 130px solid transparent;
+    border-top: 100px solid #e9a9bf;
+
+    transform-origin: top center;
+
+    z-index: 5;
+
+    transition:
+        transform 0.8s cubic-bezier(.2,.8,.2,1);
+}
+
+
+/* ==============================
+   OPENING ANIMATION
+   ============================== */
+
+.envelope-container.open
+.envelope-flap {
+
+    transform: rotateX(180deg);
+}
+
+
+.envelope-container.open
+.letter-preview {
+
+    transform: translateY(-110px);
+}
+
+
+/* ==============================
+   MAIN TITLE
+   ============================== */
+
+h1 {
+
+    margin: 0;
+
+    font-size: clamp(
+        44px,
+        8vw,
+        76px
+    );
+
+    line-height: 1.02;
+
+    font-weight: 500;
+
+    letter-spacing: -2px;
+}
+
+
+/* ==============================
+   INSTRUCTION
+   ============================== */
+
+.instruction {
+
+    margin-top: 35px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 18px;
+
+    color: #a36278;
+}
+
+
+/* ==============================
+   MOBILE
+   ============================== */
+
+@media (max-width: 600px) {
+
+    .opening {
+        padding: 20px;
+    }
+
+    .eyebrow {
+        font-size: 12px;
+        letter-spacing: 3px;
+    }
+
+    .envelope-container {
+
+        width: 240px;
+        height: 165px;
+
+        margin-bottom: 40px;
+    }
+
+    .envelope-flap {
+
+        border-left-width: 120px;
+        border-right-width: 120px;
+
+        border-top-width: 92px;
+    }
+
+    h1 {
+
+        font-size: 46px;
+
+        letter-spacing: -1.5px;
+    }
+
+}
