@@ -598,3 +598,24 @@ h1 {
     }
 
 }
+
+
+/* Opening scene disappears */
+
+.opening {
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+
+.opening.hide {
+
+    opacity: 0;
+
+    transform: scale(1.03);
+
+    pointer-events: none;
+
+}
