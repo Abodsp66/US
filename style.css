@@ -293,3 +293,308 @@ h1 {
     }
 
 }
+
+/* ==============================
+   LETTER INSIDE ENVELOPE
+   ============================== */
+
+.letter-preview {
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.letter-content {
+    padding: 18px;
+
+    text-align: center;
+
+    color: #4a3039;
+}
+
+
+.letter-content h2 {
+    margin: 5px 0 10px;
+
+    font-size: 22px;
+
+    font-weight: 500;
+}
+
+
+.letter-content p {
+    margin: 0;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+}
+
+
+.letter-small {
+    margin: 0 0 8px !important;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px !important;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    color: #b56582;
+}
+
+
+/* ==============================
+   FULL SCREEN LETTER
+   ============================== */
+
+.full-letter {
+
+    min-height: 100vh;
+    min-height: 100svh;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 80px 20px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff7fa 0%,
+            #fffdfd 50%,
+            #fff2f6 100%
+        );
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(60px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease,
+        visibility 1s ease;
+}
+
+
+/* This class will be added by JavaScript */
+
+.full-letter.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+
+/* ==============================
+   PAPER
+   ============================== */
+
+.full-letter-paper {
+
+    width: 100%;
+
+    max-width: 720px;
+
+    min-height: 80vh;
+
+    padding:
+        60px
+        clamp(25px, 7vw, 70px);
+
+    background: #fffefa;
+
+    border: 1px solid #f0dce3;
+
+    border-radius: 4px;
+
+    box-shadow:
+        0 30px 80px rgba(100, 50, 70, 0.12);
+
+    position: relative;
+}
+
+
+/* subtle paper texture */
+
+.full-letter-paper::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: 0.25;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 31px,
+            rgba(180, 130, 145, 0.08) 32px
+        );
+}
+
+
+/* ==============================
+   LETTER TYPOGRAPHY
+   ============================== */
+
+.full-letter-paper h2 {
+
+    position: relative;
+
+    margin:
+        0
+        0
+        45px;
+
+    font-size:
+        clamp(36px, 7vw, 58px);
+
+    font-weight: 500;
+
+    color: #3e2931;
+}
+
+
+.full-letter-paper p {
+
+    position: relative;
+
+    margin:
+        0
+        0
+        30px;
+
+    font-size:
+        clamp(18px, 3vw, 23px);
+
+    line-height: 1.9;
+
+    color: #4c353d;
+}
+
+
+.full-letter-paper
+.letter-small {
+
+    position: relative;
+
+    margin-bottom: 15px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    color: #b56582;
+}
+
+
+/* Important sentence */
+
+.special-line {
+
+    margin:
+        60px
+        0 !important;
+
+    text-align: center;
+
+    font-size:
+        clamp(23px, 4vw, 32px) !important;
+
+    font-style: italic;
+
+    color: #a54e6c !important;
+}
+
+
+/* ==============================
+   SCROLL MESSAGE
+   ============================== */
+
+.continue-hint {
+
+    position: relative;
+
+    margin-top: 80px;
+
+    text-align: center;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 13px;
+
+    line-height: 2;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    color: #b56582;
+
+    animation: gentleFloat 2s ease-in-out infinite;
+}
+
+
+@keyframes gentleFloat {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(8px);
+    }
+}
+
+
+/* ==============================
+   MOBILE
+   ============================== */
+
+@media (max-width: 600px) {
+
+    .full-letter {
+
+        padding:
+            30px
+            14px
+            80px;
+    }
+
+    .full-letter-paper {
+
+        padding:
+            45px
+            25px;
+
+        min-height: 90vh;
+    }
+
+    .full-letter-paper p {
+
+        line-height: 1.8;
+    }
+
+}
