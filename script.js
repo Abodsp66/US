@@ -74,64 +74,100 @@ storyElements.forEach((element) => {
 
 });
 
-<script>
-const yesBtn = document.getElementById("yesBtn");
-const noBtn = document.getElementById("noBtn");
-const lockedContent = document.getElementById("locked-content");
-const noMessage = document.getElementById("noMessage");
-
-let noClicks = 0;
-const maxNoClicks = 10;
-
-// YES button
-yesBtn.addEventListener("click", () => {
-  lockedContent.style.display = "block";
-
-  // Smoothly continue down the page
-  lockedContent.scrollIntoView({
-    behavior: "smooth"
-  });
-});
-
-// NO button
-noBtn.addEventListener("click", () => {
-  noClicks++;
-
-  // Shake
-  noBtn.classList.remove("shake");
-
-  // Force browser to restart animation
-  void noBtn.offsetWidth;
-
-  noBtn.classList.add("shake");
-
-  // After the shake finishes, move the button
-  setTimeout(() => {
-    moveNoButton();
-  }, 450);
-
-  // After 10 clicks, disappear
-  if (noClicks >= maxNoClicks) {
-    setTimeout(() => {
-      noBtn.style.opacity = "0";
-      noBtn.style.pointerEvents = "none";
-
-      setTimeout(() => {
+document.addEventListener("DOMContentLoaded", function () {
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const noMessage = document.getElementById("noMessage");
+    const thankYouSection =
+        document.getElementById("thankYouSection");
+    let noClicks = 0;
+    /* ============================= */
+    /* YES                           */
+    /* ============================= */
+    yesBtn.addEventListener("click", function () {
+        // Reveal flowers + message
+        thankYouSection.classList.add("show");
+        // Remove NO button
         noBtn.style.display = "none";
-      }, 300);
-    }, 450);
-  }
+        // Clear previous message
+        noMessage.textContent = "";
+        // Slowly move down to the revealed message
+        setTimeout(function () {
+            thankYouSection.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        }, 300);
+    });
+    /* ============================= */
+    /* NO                            */
+    /* ============================= */
+    noBtn.addEventListener("click", function () {
+        noClicks++;
+        /* SHAKE */
+        noBtn.classList.remove("shake");
+        // Restart animation
+        void noBtn.offsetWidth;
+        noBtn.classList.add("shake");
+        /* MESSAGES */
+        const messages = [
+            "Are you sure? 🥺",
+            "Think again...",
+            "Really? 😭",
+            "You don't mean that...",
+            "Please reconsider ❤️",
+            "I'll ask again...",
+            "Come on... 🥺",
+            "One more chance?",
+            "You really said no? 😭",
+            "Okay... I tried ❤️"
+        ];
+        noMessage.textContent =
+            messages[noClicks - 1];
+        /* MOVE */
+        setTimeout(function () {
+            moveNoButton();
+        }, 450);
+        /* AFTER 10 NOs */
+        if (noClicks >= 10) {
+            setTimeout(function () {
+                noBtn.style.opacity = "0";
+                noBtn.style.transform = "scale(0.5)";
+                setTimeout(function () {
+                    noBtn.style.display = "none";
+                    noMessage.textContent =
+                        "Looks like there's only one answer left... ❤️";
+                }, 400);
+            }, 450);
+        }
+    });
+    /* ============================= */
+    /* MOVE NO BUTTON                */
+    /* ============================= */
+    function moveNoButton() {
+        const buttonWidth = noBtn.offsetWidth;
+        const buttonHeight = noBtn.offsetHeight;
+        const padding = 20;
+        const maxX =
+            window.innerWidth -
+            buttonWidth -
+            padding;
+        const maxY =
+            window.innerHeight -
+            buttonHeight -
+            padding;
+        const randomX =
+            padding +
+            Math.random() *
+            Math.max(0, maxX - padding);
+        const randomY =
+            padding +
+            Math.random() *
+            Math.max(0, maxY - padding);
+        noBtn.style.position = "fixed";
+        noBtn.style.left =
+            randomX + "px";
+        noBtn.style.top =
+            randomY + "px";
+    }
 });
-
-function moveNoButton() {
-  const maxX = window.innerWidth - noBtn.offsetWidth - 30;
-  const maxY = window.innerHeight - noBtn.offsetHeight - 30;
-
-  const randomX = Math.max(20, Math.random() * maxX);
-  const randomY = Math.max(20, Math.random() * maxY);
-
-  noBtn.style.position = "fixed";
-  noBtn.style.left = randomX + "px";
-  noBtn.style.top = randomY + "px";
-}
-</script>
